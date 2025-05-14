@@ -1,12 +1,17 @@
 package com.rajharit.patrimoine;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Représente l'ensemble du patrimoine d'une personne
+ */
 @Getter
 @Setter
 @ToString
@@ -21,25 +26,25 @@ public class Patrimony {
         possessions.add(possession);
     }
 
-    public double getTotalValue(String currentDate) {
+    public double getTotalValue(LocalDate currentDate) {
         return possessions.stream()
-                .mapToDouble(p -> p.getCurrentValue(LocalDate.from(LocalDateTime.parse(currentDate))))
+                .mapToDouble(p -> p.getCurrentValue(currentDate))
                 .sum();
     }
 
-    public String getDetailedReport(LocalDateTime currentDate) {
+    public String getDetailedReport(LocalDate currentDate) {
         StringBuilder sb = new StringBuilder();
         sb.append("Détail du patrimoine au ").append(currentDate).append(":\n");
 
         for (Possession p : possessions) {
             sb.append("- ").append(p)
                     .append(", valeur actuelle: ")
-                    .append(String.format("%.2f Ar", p.getCurrentValue(LocalDate.from(LocalDateTime.parse(String.valueOf(currentDate))))))
+                    .append(String.format("%.2f Ar", p.getCurrentValue(currentDate)))
                     .append("\n");
         }
 
         sb.append("Valeur totale: ")
-                .append(String.format("%.2f Ar", getTotalValue(String.valueOf(LocalDateTime.parse(String.valueOf(currentDate))))));
+                .append(String.format("%.2f Ar", getTotalValue(currentDate)));
 
         return sb.toString();
     }

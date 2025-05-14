@@ -1,9 +1,14 @@
 package com.rajharit.patrimoine;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.time.LocalDate;
 
+/**
+ * Classe abstraite représentant une possession quelconque dans le patrimoine
+ */
 @Getter
 @Setter
 @ToString

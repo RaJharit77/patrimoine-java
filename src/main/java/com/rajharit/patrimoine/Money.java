@@ -1,11 +1,16 @@
 package com.rajharit.patrimoine;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Représente une somme d'argent (espèces, compte bancaire, etc.)
+ */
 @Getter
 @Setter
 @ToString
@@ -18,7 +23,6 @@ public class Money extends Possession {
         this.amount = initialAmount;
         this.flows = new ArrayList<>();
     }
-
 
     public void addFlow(Flow flow) {
         flows.add(flow);

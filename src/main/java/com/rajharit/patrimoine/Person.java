@@ -1,9 +1,14 @@
 package com.rajharit.patrimoine;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
+/**
+ * Représente une personne et son patrimoine
+ */
 @Getter
 @Setter
 @ToString
@@ -16,18 +21,10 @@ public class Person {
         this.patrimony = new Patrimony();
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public Patrimony getPatrimony() {
-        return patrimony;
-    }
-
-    public String getPatrimonyReport(LocalDateTime currentDate) {
+    public String getPatrimonyReport(LocalDate currentDate) {
         return String.format("Rapport patrimonial de %s au %s:\n%s",
                 name,
                 currentDate,
-                patrimony.getDetailedReport(LocalDateTime.parse(String.valueOf(currentDate))));
+                patrimony.getDetailedReport(currentDate));
     }
 }

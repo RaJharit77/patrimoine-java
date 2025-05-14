@@ -1,10 +1,15 @@
 package com.rajharit.patrimoine;
 
+
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * Représente un flux financier (entrée ou sortie d'argent)
+ */
 @Getter
 @Setter
 @ToString

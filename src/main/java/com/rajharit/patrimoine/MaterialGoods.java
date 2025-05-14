@@ -1,10 +1,15 @@
 package com.rajharit.patrimoine;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
+/**
+ * Représente un bien matériel qui se déprécie avec le temps
+ */
 @Getter
 @Setter
 @ToString
