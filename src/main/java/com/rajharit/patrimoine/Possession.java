@@ -1,25 +1,20 @@
 package com.rajharit.patrimoine;
 
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDate;
 
-/**
- * Classe abstraite représentant une possession quelconque dans le patrimoine
- */
 @Getter
-@Setter
+@EqualsAndHashCode
+@AllArgsConstructor
 @ToString
-public abstract class Possession {
-    private final String name;
-    private final LocalDate acquisitionDate;
+public abstract sealed class Possession permits Compte, Materiel, TrainDeVie {
+    protected final String nom;
+    protected final LocalDate aDateDe;
+    protected final Argent valeur;
 
-    public Possession(String name, LocalDate acquisitionDate) {
-        this.name = name;
-        this.acquisitionDate = acquisitionDate;
-    }
-
-    public abstract double getCurrentValue(LocalDate currentDate);
+    public abstract Possession projectionFuture(LocalDate dateFuture);
 }
