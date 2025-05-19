@@ -12,7 +12,6 @@ import java.util.Set;
 import java.util.regex.MatchResult;
 
 public class PatrimoineIloTest {
-
     @Test
     void patrimoineDeIlo() {
         Personne ilo = new Personne("ilo");

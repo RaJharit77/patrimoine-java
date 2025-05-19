@@ -12,7 +12,6 @@ import static com.rajharit.patrimoine.Argent.ariary;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MaterielTest {
-
     @Test
     void projection_future_d_un_materiel() {
         var ordinateur = new Materiel("ordinateur",

@@ -10,7 +10,6 @@ import static com.rajharit.patrimoine.Argent.ariary;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TrainDeVieTest {
-
     @Test
     void projection_future_de_train_de_vie() {
         Compte compteCourant = new Compte("compte courant",
