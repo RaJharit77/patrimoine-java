@@ -2,12 +2,10 @@ package com.rajharit.patrimoine;
 
 import lombok.Getter;
 
-import java.time.Duration;
 import java.time.LocalDate;
-import java.time.Month;
 
-import static com.rajharit.patrimoine.Argent.ariary;
 import static java.time.temporal.ChronoUnit.MONTHS;
+import static com.rajharit.patrimoine.Argent.ariary;
 
 @Getter
 public final class TrainDeVie extends Possession {
@@ -20,6 +18,9 @@ public final class TrainDeVie extends Possession {
         this.financeur = financeur;
         this.jourDOperation = jourDOperation;
         this.debutDeLaPonction = debutDeLaPonction;
+
+        this.financeur.financer(this);
+        // todo: infinite loop need debug
     }
 
     @Override
@@ -35,12 +36,20 @@ public final class TrainDeVie extends Possession {
             );
         }
 
-        long moisEcoulee = MONTHS.between(debutDeLaPonction, dateFuture);
+        long nombreDOperation = debutDeLaPonction
+                .datesUntil(dateFuture.plusDays(1))
+                .filter(date ->
+                        date.getDayOfMonth() == jourDOperation
+                ).count();
 
-        if (dateFuture.getDayOfMonth() >= jourDOperation) {
-            Argent valeurFuture = financeur.getValeur()
-                    .soustraire(valeur.multiplier(moisEcoulee));
-        }
-        return null;
+        Argent argentFuture = valeur.multiplier(nombreDOperation);
+
+        return new TrainDeVie(
+                nom,
+                dateFuture,
+                argentFuture,
+                financeur,
+                jourDOperation,
+                debutDeLaPonction);
     }
 }

@@ -1,31 +1,36 @@
 package patrimoine;
 
-import com.rajharit.patrimoine.*;
+import com.rajharit.patrimoine.Compte;
+import com.rajharit.patrimoine.TrainDeVie;
 import org.junit.jupiter.api.Test;
+
 import java.time.LocalDate;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static com.rajharit.patrimoine.Argent.ariary;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CompteTest {
-    @Test
-    void testProjectionFuture() {
-        Compte compte = new Compte("Compte courant",
-                LocalDate.of(2024, 1, 1),
-                new Argent(1000.0, Devise.ARIARY));
-
-        Possession future = compte.projectionFuture(LocalDate.of(2025, 1, 1));
-
-        assertEquals(1000.0, future.getValeur().getMontant());
-        assertEquals("Compte courant", future.getNom());
-    }
 
     @Test
-    void testProjectionBeforeCreation() {
-        Compte compte = new Compte("Compte",
-                LocalDate.of(2024, 1, 1),
-                new Argent(1000.0, Devise.ARIARY));
+    void projection_future_compte() {
+        Compte compteCourant = new Compte("compte courant",
+                LocalDate.of(2024, 5, 13),
+                ariary(600_000d),
+                LocalDate.of(2024, 5, 13)
+        );
 
-        Possession future = compte.projectionFuture(LocalDate.of(2023, 1, 1));
+        TrainDeVie trainDeVie = new TrainDeVie("vie quotidienne",
+                LocalDate.of(2024, 5, 13),
+                ariary(500_000d),
+                compteCourant,
+                1,
+                LocalDate.of(2024, 5, 13));
 
-        assertEquals(0.0, future.getValeur().getMontant());
+        var actual = compteCourant.projectionFuture(LocalDate.of(
+                2024,
+                7,
+                26));
+
+        assertEquals(-400_000d, actual.getValeur().getMontant());
     }
 }

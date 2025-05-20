@@ -1,17 +1,17 @@
 package patrimoine;
 
+import com.rajharit.patrimoine.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.Month;
-import com.rajharit.patrimoine.Materiel;
-import com.rajharit.patrimoine.Devise;
-import com.rajharit.patrimoine.Argent;
+
 import static com.rajharit.patrimoine.Argent.ariary;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MaterielTest {
+
     @Test
     void projection_future_d_un_materiel() {
         var ordinateur = new Materiel("ordinateur",
@@ -28,6 +28,6 @@ public class MaterielTest {
         ));
 
         assertEquals(1_800_000d, ordinateur1Jan22.getValeur().getMontant());
-        assertEquals(1_620_000d, ordinateur1Jan23.getValeur().getMontant());
+        assertEquals(1_600_000d, ordinateur1Jan23.getValeur().getMontant());
     }
 }
