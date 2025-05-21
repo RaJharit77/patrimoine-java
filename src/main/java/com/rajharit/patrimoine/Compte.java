@@ -35,7 +35,7 @@ public final class Compte extends Possession {
             );
         }
 
-        Argent sommeTotaleTrainDeVie = trainDeVies.stream()
+        Argent sommeTotaleTrainDeVie = new HashSet<>(trainDeVies).stream()
                 .map(trainDeVie ->
                         trainDeVie.projectionFuture(dateFuture).valeur
                 ).reduce(ariary(0), Argent::additionner);
